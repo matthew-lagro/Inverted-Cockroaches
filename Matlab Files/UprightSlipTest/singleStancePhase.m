@@ -11,12 +11,12 @@ function [timeVec, stateVec] = singleStancePhase(mass, natLegLength, springConst
     
     % First, we set up the options for the ode solver. We will be
     % triggering an event, see below for the defintion of this function.
-    options = odeset('Events', stanceEvent);
+    options = odeset('Events', @stanceEvent);
     
     % Here is the bulk of the work. ode45 does an adaptive Runge-Kutta
     % integration of our system of odes, with the special option of
     % terminating when our spring force vector drops to zero.
-    [timeVec, stateVec] = ode45(deriv, timeInterval, initialState, options);
+    [timeVec, stateVec] = ode45(@deriv, timeInterval, initialState, options);
     
     % Now, let us begin defining the arguments to ode45.
     %
@@ -49,7 +49,7 @@ function [timeVec, stateVec] = singleStancePhase(mass, natLegLength, springConst
         % Hooke's law: the magnitude of the force from a spring is
         % proportional to the extension, in the opposite direction.
         
-        F = - (springConst * legExtension);
+        F = (springConst * legExtension);
         
         % Now we can calculate xa and ya, the accelerations. Notice that
         % the x component of the unit direction vector is x/legLength, etc.
@@ -58,23 +58,28 @@ function [timeVec, stateVec] = singleStancePhase(mass, natLegLength, springConst
         xa = F * (x/legLength) * (1/mass);
         ya = F * (y/legLength) * (1/mass);
         
-        % Finally, we set up the derivative
-        d = [xv, yv, xa, ya];
+        % Finally, we set up the derivative as a column vector
+        d = [xv; yv; xa; ya];
     end
 
     % Here we define the event function, stanceEvent. The event is
     % triggered when value, as returned by stanceEvent, goes to zero, from
     % above.
     function [value, isterm, direction] = stanceEvent(~, state)
+        x = state(1);
+        y = state(2);
         
         % Value is just our (signed) spring force. We calculate it as above
         % in the derivative function.
         
         legLength = sqrt(x^2+y^2);
         legExtension = natLegLength - legLength;    
-        value = - (springConst * legExtension);
+        value = (springConst * legExtension);
         
         isterm = 1; % halt integration when event occurs
-        direction = -1; % we only care about when the spring force has decreased to zero, i.e. was positive
+        % we only care about when the spring force has decreased to zero,
+        % i.e. was positive
+        direction = -1; 
+
     end
 end
