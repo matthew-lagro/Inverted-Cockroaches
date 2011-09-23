@@ -36,7 +36,7 @@ function [tPlot, statePlots] = uprightSingleSlip(mass, natLegLength, springConst
     % We save the state in a vector. This is the format in general for the
     % state vector of this sytem, it will be used repeatedly.
     
-    initialState = [x0, y0, initXv, initYv]
+    initialState = [x0, y0, initXv, initYv];
     
     % Next, we create a pair of vectors to store the results of integrating
     % this system. These are the values that will be returned by the
@@ -65,7 +65,7 @@ function [tPlot, statePlots] = uprightSingleSlip(mass, natLegLength, springConst
     % as initial conditions for the aerial phase
     
     finalTime = tP(end);
-    finalState = sP(end, :)
+    finalState = sP(end, :);
     
     % Our simulation promises to run only during the provided time
     % interval. If we used up all the time in the ground phase, we probably
