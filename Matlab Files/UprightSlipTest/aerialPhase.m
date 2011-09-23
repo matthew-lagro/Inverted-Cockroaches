@@ -13,7 +13,7 @@ function [times, states] = aerialPhase(mass, natLegLength, landingAngle, initial
         xv = state(3);
         yv = state(4);
         
-        d = [xv; yv; 0; (mass * GRAVITY)];
+        d = [xv; yv; 0; (GRAVITY)];
     end
 
     function [value, isterm, direction] = airEvent(~, state)
