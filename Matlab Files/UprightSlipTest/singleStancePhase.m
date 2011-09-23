@@ -54,9 +54,10 @@ function [timeVec, stateVec] = singleStancePhase(mass, natLegLength, springConst
         % Now we can calculate xa and ya, the accelerations. Notice that
         % the x component of the unit direction vector is x/legLength, etc.
         % We are using F=ma, or rather, a = F/m.
+        % Acceleration in y also has a gravitational component.
         
         xa = F * (x/legLength) * (1/mass);
-        ya = F * (y/legLength) * (1/mass);
+        ya = F * (y/legLength) * (1/mass) - GRAVITY;
         
         % Finally, we set up the derivative as a column vector
         d = [xv; yv; xa; ya];
