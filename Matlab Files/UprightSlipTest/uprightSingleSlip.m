@@ -22,8 +22,7 @@ function [tPlot, statePlots] = uprightSingleSlip(mass, natLegLength, springConst
     % The value is the standard global average of -9.80665 m/s^2
     
     global GRAVITY;
-    %GRAVITY = -9.80665;
-    GRAVITY = -9.8;
+    GRAVITY = -9.80665;
     
     % First we calculate the initial state of the system. Since the initial
     % velocity is given, we need to find the initial position. We are

@@ -1,9 +1,6 @@
 function test
-    %[alpha, iS] = findGoodInitialConditions(70, 1, 10000, 0.8, 3);
-    %[alpha, iS] = findGoodInitialConditions(70, 1, 2000, 0.95, 3);
-    [alpha, iS] = findGoodInitialConditions(1, 1, 200, 0.95, 3);
-    foo = alpha
-        
+    [alpha, iS] = findGoodInitialConditions(70, 1, 10000, 0.8, 3);
+    
     times = [];
     states = [];
     

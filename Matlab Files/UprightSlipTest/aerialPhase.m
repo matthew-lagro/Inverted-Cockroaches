@@ -7,10 +7,6 @@ function [times, states] = aerialPhase(mass, natLegLength, landingAngle, initial
     
     [times, states] = ode45(@deriv, timeInterval, initialState, options);
     
-    times(end)
-    states(end,:)
-    %%% OUTPUTTING CODE TKTK
-    
     function d = deriv(~, state)
         x = state(1);
         y = state(2);
