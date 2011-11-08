@@ -17,7 +17,7 @@
 % spring, making a fixed angle at touchdown. Most initial conditions will
 % not produce stable gaits, there is a helper function which can determine
 % a good gait.
-function [tPlot, statePlots] = uprightSingleSlip(mass, natLegLength, springConst, initXv, initYv, landingAngle, timeInterval)
+function [tPlot, statePlots, minFrac] = uprightSingleSlip(mass, natLegLength, springConst, initXv, initYv, landingAngle, timeInterval)
     % Before anything else, we will define gravity.
     % The value is the standard global average of -9.80665 m/s^2
     
@@ -54,7 +54,7 @@ function [tPlot, statePlots] = uprightSingleSlip(mass, natLegLength, springConst
     
     % Here we run the ground phase, and save it in a pair of temporary
     % vectors.
-    [tP, sP] = singleStancePhase(mass, natLegLength, springConst, initialState, timeInterval);
+    [tP, sP, minFrac] = singleStancePhase(mass, natLegLength, springConst, initialState, timeInterval);
     
     % We append the results of the single stance phase simulation into tPlot
     % and statePlots

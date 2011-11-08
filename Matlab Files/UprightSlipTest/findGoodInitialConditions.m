@@ -1,5 +1,5 @@
 function [alpha, initialState] = findGoodInitialConditions(mass, natLegLength, springConst, compression, xvCenter)
-    [~, states] = singleStancePhase(mass, natLegLength, springConst, [0, (compression * natLegLength), xvCenter, 0], [0, 10]);
+    [~, states, ~] = singleStancePhase(mass, natLegLength, springConst, [0, (compression * natLegLength), xvCenter, 0], [0, 10]);
     
     initialState = states(end, :);
     alpha = asin(initialState(2));

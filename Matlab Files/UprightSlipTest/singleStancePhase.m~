@@ -18,10 +18,9 @@ function [timeVec, stateVec, minFrac] = singleStancePhase(mass, natLegLength, sp
     % terminating when our spring force vector drops to zero.
     [timeVec, stateVec, eventTimes, eventStates, eventIndicies] = ode45(@deriv, timeInterval, initialState, options);
     
-    % This attempts to estimate at which point into the stance we reach our
-    % minimum height, i.e. y velocity zero.
-    stanceWidth = stateVec(end, 1) - stateVec(1,1);
-    minFrac = eventStates(1,1)/stanceWidth;
+    % TKTK This needs to be filled in with something regarding the events
+    % from the ground state solutions
+    minFrac = eventStates(1
     
     % Now, let us begin defining the arguments to ode45.
     %
@@ -88,8 +87,8 @@ function [timeVec, stateVec, minFrac] = singleStancePhase(mass, natLegLength, sp
         
         isterm = [1, 0]; % halt integration when to zero force
         % we only care about when the spring force has decreased to zero,
-        % i.e. was positive, and when the y velocity has increased to zero
-        direction = [-1, 1]; 
+        % i.e. was positive
+        direction = [-1, 0]; 
 
     end
 end
