@@ -18,6 +18,11 @@ function [timeVec, stateVec] = singleStancePhase(mass, natLegLength, springConst
     % terminating when our spring force vector drops to zero.
     [timeVec, stateVec] = ode45(@deriv, timeInterval, initialState, options);
     
+    initialState
+    timeVec(end)
+    stateVec(end,:)
+    %%% OUTPUTTING CODE TKTK
+    
     % Now, let us begin defining the arguments to ode45.
     %
     % First, we create a function that given a time and a state vector,
